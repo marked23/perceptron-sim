@@ -2,6 +2,8 @@
 
 An interactive, browser-based single-neuron perceptron simulator with a skeuomorphic analog instrument UI. Toggle inputs, twist weight knobs, and watch an animated analog meter respond in real time.
 
+[Try it right now.](https://marked23.github.io/perceptron-sim/)
+
 Inspired by the perceptron demonstrated in the Welch Labs video: [ChatGPT is made from 100 million of these [The Perceptron]](https://www.youtube.com/watch?v=l-9ALe3U-Fg)
 
 ![4×4 Perceptron Example](4x4example.png)

@@ -23,7 +23,7 @@ const METER_ARC_END   = 340 * Math.PI / 180;
 const inputs  = new Array(NUM_INPUTS).fill(0);
 const weights = new Array(NUM_INPUTS).fill(0);
 let bias = 0;
-let learningRate = 1;
+let learningRate = 10;
 let targetOutput  = 0.5;
 let currentOutput = 0.5;
 
