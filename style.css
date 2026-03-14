@@ -1,0 +1,286 @@
+/* ── CSS Variables ── */
+:root {
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f5f4f0;
+  --color-background-tertiary: #eeece6;
+  --color-border-secondary: rgba(0,0,0,.22);
+  --color-border-tertiary: rgba(0,0,0,.12);
+  --color-text-primary: #1a1a18;
+  --color-text-secondary: #5a5955;
+  --color-text-tertiary: #8a8880;
+  --font-mono: 'Courier New', monospace;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background-primary: #1e1e1c;
+    --color-background-secondary: #252523;
+    --color-background-tertiary: #2c2c2a;
+    --color-border-secondary: rgba(255,255,255,.2);
+    --color-border-tertiary: rgba(255,255,255,.1);
+    --color-text-primary: #e8e6df;
+    --color-text-secondary: #9a9890;
+    --color-text-tertiary: #6a6860;
+  }
+}
+
+/* ── Reset ── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--color-background-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  font-family: var(--font-mono);
+}
+
+/* ── Panel ── */
+.panel {
+  font-family: var(--font-mono);
+  user-select: none;
+  width: max-content;
+  transform-origin: center center;
+}
+
+.panel-inner {
+  background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: 14px 16px 12px;
+}
+
+/* ── Header ── */
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 11px;
+  padding-bottom: 8px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+}
+
+.panel-title {
+  font-size: 11px;
+  letter-spacing: 7px;
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+}
+
+.panel-readout {
+  font-size: 10px;
+  color: var(--color-text-tertiary);
+}
+
+.panel-readout .value {
+  color: #e05520;
+}
+
+/* ── Main Layout ── */
+.panel-body {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* ── Section Labels ── */
+.section-label {
+  font-size: 8px;
+  letter-spacing: 4px;
+  color: var(--color-text-tertiary);
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.section-sublabel {
+  font-size: 7px;
+  color: var(--color-text-tertiary);
+  opacity: .6;
+  text-align: center;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+/* ── Card (shared by inputs and weights sections) ── */
+.card {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-md);
+  padding: 10px;
+}
+
+/* ── Switches ── */
+.sw {
+  width: 17px;
+  height: 33px;
+  background: var(--color-background-tertiary);
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  transition: border-color .1s;
+}
+
+.sw::after {
+  content: '';
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  height: 13px;
+  border-radius: 1px;
+  background: var(--color-border-secondary);
+  top: 17px;
+  transition: top .1s ease, background .1s;
+}
+
+.sw.on {
+  border-color: #e05520;
+  box-shadow: 0 0 6px rgba(224,85,32,.2);
+}
+
+.sw.on::after {
+  top: 2px;
+  background: #e05520;
+  box-shadow: 0 0 5px rgba(224,85,32,.6);
+}
+
+.sw-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.sw-num {
+  font-size: 7px;
+  color: var(--color-text-tertiary);
+  opacity: .7;
+}
+
+/* ── Knobs ── */
+.knob-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: ns-resize;
+}
+
+.knob-wrap canvas {
+  cursor: ns-resize;
+  display: block;
+  touch-action: none;
+}
+
+.knob-value {
+  font-size: 8px;
+  width: 30px;
+  text-align: center;
+  color: var(--color-text-tertiary);
+  font-family: var(--font-mono);
+}
+
+.knob-value.positive { color: #e05520; }
+.knob-value.negative { color: #3d8fff; }
+
+/* ── Weights Section ── */
+.weights-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Bias + Learning Rate Row ── */
+.bias-lr-row {
+  margin-top: 9px;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+/* ── Bias Section ── */
+.bias-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.bias-label {
+  font-size: 8px;
+  letter-spacing: 4px;
+  color: var(--color-text-tertiary);
+  margin-bottom: 2px;
+}
+
+/* ── Weight Adjust Buttons ── */
+.weight-adjust-buttons {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.adj-btn {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 0.5px solid var(--color-border-secondary);
+  cursor: pointer;
+  transition: background .1s, border-color .1s;
+}
+
+.adj-btn-dec {
+  background: rgba(61,143,255,.12);
+  color: #3d8fff;
+}
+
+.adj-btn-dec:hover {
+  background: rgba(61,143,255,.22);
+  border-color: #3d8fff;
+}
+
+.adj-btn-inc {
+  background: rgba(224,85,32,.12);
+  color: #e05520;
+}
+
+.adj-btn-inc:hover {
+  background: rgba(224,85,32,.22);
+  border-color: #e05520;
+}
+
+/* ── Output Section ── */
+.output-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Footer ── */
+.panel-footer {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 0.5px solid var(--color-border-tertiary);
+  font-size: 8px;
+  color: var(--color-text-tertiary);
+  text-align: center;
+  line-height: 2;
+  opacity: .8;
+}
+
+.panel-footer .highlight {
+  color: #e05520;
+}
+
+.panel-footer .hint {
+  font-size: 7px;
+  opacity: .6;
+}

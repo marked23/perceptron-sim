@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analog Perceptron</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="panel">
+<div class="panel-inner">
+
+  <div class="panel-header">
+    <div id="panelTitle" class="panel-title"></div>
+    <div class="panel-readout">
+      Σ = <span id="weightedSumDisplay" class="value">0.0</span>
+      &nbsp;&nbsp;output = <span id="outputDisplay" class="value">0.500</span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+
+    <!-- Inputs -->
+    <div>
+      <div class="section-label">INPUTS</div>
+      <div class="card">
+        <div id="switchGrid" style="display:grid;gap:7px"></div>
+      </div>
+      <div class="weight-adjust-buttons">
+        <button id="btnDecWeights" class="adj-btn adj-btn-dec">- LR</button>
+        <button id="btnIncWeights" class="adj-btn adj-btn-inc">+ LR</button>
+      </div>
+    </div>
+
+    <!-- Weights -->
+    <div class="weights-section">
+      <div class="section-label" style="letter-spacing:3px">WEIGHTS</div>
+      <div class="section-sublabel">-30 to +30</div>
+      <div class="card">
+        <div id="knobGrid" style="display:grid;gap:5px"></div>
+      </div>
+      <div class="bias-lr-row">
+        <div class="bias-section">
+          <div class="bias-label">BIAS</div>
+          <div class="knob-wrap">
+            <canvas id="biasCanvas" style="touch-action:none"></canvas>
+            <div id="biasValue" class="knob-value">+0</div>
+          </div>
+        </div>
+        <div class="bias-section">
+          <div class="bias-label">LRN RATE</div>
+          <div class="knob-wrap">
+            <canvas id="lrCanvas" style="touch-action:none"></canvas>
+            <div id="lrValue" class="knob-value">+10</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Output Meter -->
+    <div class="output-section">
+      <div class="section-label">OUTPUT</div>
+      <canvas id="meterCanvas" style="display:block"></canvas>
+    </div>
+
+  </div>
+
+  <div class="panel-footer">
+    weightedSum = Σ( inputValue[i] x weightValue[i] ) + biasValue &nbsp;|&nbsp;
+    activationOutput = 1 / ( 1 + exp( -weightedSum / <span class="highlight">100</span> ) )
+    <br><span class="hint">drag knobs or scroll wheel to adjust weights &nbsp;·&nbsp; double-click knob to reset to 0 &nbsp;·&nbsp; click switches to toggle inputs</span>
+  </div>
+
+</div>
+</div>
+
+<script src="perceptron.js"></script>
+</body>
+</html>
